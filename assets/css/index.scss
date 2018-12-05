@@ -450,7 +450,12 @@ body{
 .zmiti-main-ui{
     width:100%;
     margin: 20px auto;
-
+    color:#333;
+    .zmiti-title{
+        width: 90%;
+        text-indent: 2em;
+        margin: 20px auto;
+    }
     .zmiti-swpier-item{
         .zmiti-header{
             margin: 20px auto;
@@ -479,7 +484,7 @@ body{
             @include pos(a);
             width:10px;
             height: 100%;
-            left: 10%;
+            left: 50%;
             margin-left: -5px;
             top: 0;
             background: #fff;;
@@ -512,6 +517,7 @@ body{
     .zmiti-like{
         @include pos(r);
         text-align: right;
+        display: none;
         width: 90%;
         margin: 0 auto;
         img{
