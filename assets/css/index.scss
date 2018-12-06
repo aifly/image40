@@ -2,22 +2,19 @@
     @if $v==a {
         position: absolute;
     }
-
     @else if $v==r {
         position: relative;
     }
-
     @else if $v==f {
         position: fixed;
     }
-
 }
 
-@mixin br($v:50%) {
+@mixin br($v: 50%) {
     border-radius: $v;
 }
 
-@mixin opacity($v:0) {
+@mixin opacity($v: 0) {
     opacity: $v;
 }
 
@@ -31,7 +28,7 @@
     transform-origin: $v;
 }
 
-@mixin backgroundSize($v:cover) {
+@mixin backgroundSize($v: cover) {
     background-size: $v;
 }
 
@@ -40,7 +37,7 @@
     transition: transform $v;
 }
 
-@mixin transform_origin($v:center) {
+@mixin transform_origin($v: center) {
     -webkit-transform-origin: $v;
     transform-origin: $v;
 }
@@ -50,7 +47,7 @@
     transition: $v;
 }
 
-@mixin transitionTimingFunction($v:cubic-bezier(1, -0.025, 1, 0.865)) {
+@mixin transitionTimingFunction($v: cubic-bezier(1, -0.025, 1, 0.865)) {
     -webkit-transition-timing-function: $v;
     transition-timing-function: $v;
 }
@@ -64,7 +61,7 @@
     background: $bg;
 }
 
-@mixin backgroundSize($v:cover) {
+@mixin backgroundSize($v: cover) {
     background-size: $v;
 }
 
@@ -88,18 +85,18 @@
 }
 
 @mixin fly-h-gradient-line {
-    background: -webkit-gradient(linear, left top, right top, from(rgba(3, 114, 195, .2)), color-stop(0.5, rgba(3, 114, 195, 1)), to(rgba(3, 114, 195, .2)));
-    background: -moz-linear-gradient(left, rgba(3, 114, 195, .2), rgba(3, 114, 195, 1) 50%, rgba(3, 114, 195, .2));
-    background: -ms-linear-gradient(left, rgba(3, 114, 195, .2), rgba(3, 114, 195, 1) 50%, rgba(3, 114, 195, .2));
+    background: -webkit-gradient(linear, left top, right top, from(rgba(3, 114, 195, 0.2)), color-stop(0.5, rgba(3, 114, 195, 1)), to(rgba(3, 114, 195, 0.2)));
+    background: -moz-linear-gradient(left, rgba(3, 114, 195, 0.2), rgba(3, 114, 195, 1) 50%, rgba(3, 114, 195, 0.2));
+    background: -ms-linear-gradient(left, rgba(3, 114, 195, 0.2), rgba(3, 114, 195, 1) 50%, rgba(3, 114, 195, 0.2));
 }
 
-@mixin fly-v-gradient-line($minOpacity:.2, $maxOpacity:1) {
+@mixin fly-v-gradient-line($minOpacity: 0.2, $maxOpacity: 1) {
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(204, 204, 204, $minOpacity)), color-stop(0.5, rgba(204, 204, 204, $maxOpacity)), to(rgba(204, 204, 204, $minOpacity)));
     background: -moz-linear-gradient(top, rgba(204, 204, 204, $minOpacity), rgba(204, 204, 204, $maxOpacity) 50%, rgba(204, 204, 204, $minOpacity));
     background: -ms-linear-gradient(top, rgba(204, 204, 204, $minOpacity), rgba(204, 204, 204, $maxOpacity) 50%, rgba(204, 204, 204, $minOpacity));
 }
 
-@mixin displayFlex($v:column) {
+@mixin displayFlex($v: column) {
     display: flex;
     display: -webkit-flex;
     flex-flow: $v;
@@ -124,412 +121,305 @@
 .zmiti-play {
     width: .8rem;
     height: .8rem;
-    @include br();
+    @include br;
     @include pos(f);
     z-index: 1000;
     right: .5rem;
     top: .5rem;
-
     &.rotate {
         @include animation(rotate 5s linear infinite);
     }
-
 }
 
- 
-body{
-    font-family: "Helvetica Neue",
-    'Helvetica',
-    "Microsoft YaHei",
-    arial,
-    sans-serif;
+body {
+    font-family: "Helvetica Neue", 'Helvetica', "Microsoft YaHei", arial, sans-serif;
     font-size: 28px;
 }
 
-#loading{
+#loading {
     @include pos(a);
     background: #158ae4;
+    background: #000;
     width: 100%;
     height: 100vh;
     z-index: 1100;
     left: 0;
     top: 0;
+    color: #fff;
     @include displayBox(vertical);
-    text-align: center;
-   
-    a {
+    &>div {
+        line-height: 70px;
+        width: 60%;
         text-align: center;
-        line-height: 200px;
-        color: #fff;
-        display: block;
-        width: 200px;
-        height: 200px;
-        position: fixed;
-        left: 50%;
-        top: 50%;
-        border-radius: 50%;
-        margin: -100px 0 0 -100px;
-
-        .zmiti-head {
-            $size: 70px;
-            width: $size;
-            height: $size;
-            @include br(50%);
-            @include pos(a);
-            top: 50%;
-            left: 50%;
-            margin-left: -$size /2;
-            margin-top: -$size/2;
-        }
-
-        .zmiti-progress {
-            width: 100%;
-            @include pos(r);
-            z-index: 10;
-            top: 90px;
-        }
-
+        font-size: 40px;
     }
-
-    a .line1 {
-        width: 80px;
-        height: 80px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin: -42px 0 0 -42px;
-        border: 2px solid #fff;
-        border-radius: 80px 80px 80px 80px;
-        border-right-color: transparent;
-        border-top-color: transparent;
-    }
-
-    a .line2 {
-        width: 100px;
-        height: 100px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin: -52px 0 0 -52px;
-        border: 2px solid #fff;
-        border-radius: 100px 100px 100px 100px;
-        border-right-color: transparent;
-        border-left-color: transparent;
-    }
-
-    a .line3 {
-        width: 120px;
-        height: 120px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        margin: -62px 0 0 -62px;
-        border: 2px solid #fff;
-        border-radius: 120px 120px 120px 120px;
-        border-right-color: transparent;
-    }
-
-    @-webkit-keyframes line1 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        20% {
-            -webkit-transform: rotate(720deg);
-            transform: rotate(720deg);
-        }
-
-        50% {
-            -webkit-transform: rotate(1080deg);
-            transform: rotate(1080deg);
-        }
-
-        75% {
-            -webkit-transform: rotate(1300deg);
-            transform: rotate(1300deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(2500deg);
-            transform: rotate(2500deg);
-        }
-
-    }
-
-    @keyframes line1 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        20% {
-            -webkit-transform: rotate(720deg);
-            transform: rotate(720deg);
-        }
-
-        50% {
-            -webkit-transform: rotate(1080deg);
-            transform: rotate(1080deg);
-        }
-
-        75% {
-            -webkit-transform: rotate(1300deg);
-            transform: rotate(1300deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(2500deg);
-            transform: rotate(2500deg);
-        }
-
-    }
-
-    a .line1 {
-        -webkit-animation: line1 14s ease-in-out 1s infinite alternate;
-        animation: line1 15s ease-in-out 1s infinite alternate;
-    }
-
-    @-webkit-keyframes line2 {
-        from {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-
-        to {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-    }
-
-    @keyframes line2 {
-        from {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-
-        to {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-    }
-
-    a .line2 {
-        -webkit-animation: line2 3s ease-in-out infinite;
-        animation: line2 3s ease-in-out infinite;
-    }
-
-    @-webkit-keyframes line3 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        20% {
-            -webkit-transform: rotate(720deg);
-            transform: rotate(720deg);
-        }
-
-        50% {
-            -webkit-transform: rotate(1080deg);
-            transform: rotate(1080deg);
-        }
-
-        75% {
-            -webkit-transform: rotate(1300deg);
-            transform: rotate(1300deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(2500deg);
-            transform: rotate(2500deg);
-        }
-
-    }
-
-    @keyframes line3 {
-        0% {
-            -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
-        }
-
-        20% {
-            -webkit-transform: rotate(720deg);
-            transform: rotate(720deg);
-        }
-
-        50% {
-            -webkit-transform: rotate(1080deg);
-            transform: rotate(1080deg);
-        }
-
-        75% {
-            -webkit-transform: rotate(1300deg);
-            transform: rotate(1300deg);
-        }
-
-        100% {
-            -webkit-transform: rotate(2500deg);
-            transform: rotate(2500deg);
-        }
-
-    }
-
-    a .line3 {
-        -webkit-animation: line3 20s ease-in-out infinite;
-        animation: line3 20s ease-in-out infinite;
-    }
-
-    .zmiti-loading-bar {
-        width: 2rem;
-        @include br(10px);
-
-        &:before {
-            content: '';
-            @include br(10px);
-            @include pos(a);
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            box-shadow: 0 0 3px rgba(255, 255, 255, .5);
-        }
-
-        //height: 1rem;
+    .zmiti-clock {
+        margin-top: 40px;
+        width: 91px;
         @include pos(r);
-        margin: 0 auto;
-
-        .zmiti-target {
-            $size: .4rem;
-            width: $size;
-            height: $size;
-            @include br();
-            background: #fff;
-            left: 50%;
-            top: .4rem;
+        height: 123px;
+        background: url(../images/clock.png) no-repeat center;
+        .zmiti-c1 {
+            background: url(../images/c1.png) no-repeat center;
+            width: 27px;
+            height: 19px;
             @include pos(a);
-            margin-left: -$size/2;
-            @include animation(scale linear 2s infinite alternate);
+            bottom: 45px;
+            left: 18px;
+            @include animation(rotate1 linear 2s infinite);
+            @include transformOrigin(right bottom);
         }
-
+        .zmiti-c2 {
+            background: url(../images/c2.png) no-repeat center;
+            width: 29px;
+            height: 20px;
+            @include pos(a);
+            bottom: 45px;
+            left: 45px;
+            @include transformOrigin(left bottom);
+            @include animation(rotate1 linear 1s infinite);
+        }
+        .zmiti-c0 {
+            background: url(../images/c0.png) no-repeat center;
+            width: 18px;
+            height: 18px;
+            @include pos(a);
+            left: 50%;
+            margin-left: -9px;
+            bottom: 38px;
+            @include animation(rotate1 linear 1s infinite);
+        }
     }
-
-    .zmiti-progress {
-        margin-top: .5rem;
-        text-align: center;
-        color: #fff;
-        font-family: Georgia;
-        font-size: .5rem;
-    }
-
-
 }
-#bar{
+
+@-webkit-keyframes rotate1 {
+    to {
+        @include transform(rotate(360deg));
+    }
+}
+
+#bar {
     height: 30px;
     margin-bottom: 30px;
     @include pos(r);
     overflow: hidden;
-    
-    span{
+    span {
         width: 100%;
-      
         @include pos(a);
         width: 100%;
         height: 100%;
         background: #f90;
-
         left: 0;
         top: 0;
-       
-        @include transform(translate3d(-100%,0,0));
+        @include transform(translate3d(-100%, 0, 0));
     }
 }
 
-.zmiti-main-ui{
-    width:100%;
+.zmiti-main-ui {
+    width: 100%;
     margin: 20px auto;
-    color:#333;
-    .zmiti-title{
+    color: #333;
+    .zmiti-title {
         width: 90%;
         text-indent: 2em;
         margin: 20px auto;
     }
-    .zmiti-swpier-item{
-        .zmiti-header{
+    .zmiti-swpier-item {
+        .zmiti-header {
             margin: 20px auto;
             width: 90%;
         }
-        .zmiti-swiper-bottom{
-            font-size:22px;
-            margin:20px auto 20px;
+        .zmiti-swiper-bottom {
+            font-size: 22px;
+            margin: 20px auto 20px;
             width: 90%;
+            color: #666;
         }
-
         padding-bottom: 40px;
     }
-    .zmiti-img-box{
+    .zmiti-img-box {
         @include pos(r);
 
-        &>h3{
-            font-size:36px;
+        .zmiti-heart{
+            @include pos(a);
+            width: 100px;
+            z-index: 100;
+            
+            margin-left: -50px;
+            
+            margin-top: -50px;
+            @include animation(scale .8s );
+            
+        }
+
+        @-webkit-keyframes scale{
+            to{
+                @include transform(scale(4) translate3d(-4px,-4px,0));
+                opacity:0;
+            }
+        }
+        &>h3 {
+            font-size: 36px;
             @include pos(r);
             z-index: 100;
         }
-
-
-
-        .zmiti-swipe-bar{
+        .zmiti-swipe-bar {
             @include pos(a);
-            width:10px;
+            width: 8px;
             height: 100%;
             left: 50%;
-            margin-left: -5px;
+            margin-left: -4px;
             top: 0;
-            background: #fff;;
+            background: #fff;
+            &:before,
+            &:after {
+                content: "";
+                @include pos(a);
+                width: 0;
+                height: 0;
+                border-width: 18px 18px 18px 0;
+                border-style: solid;
+                border-color: transparent #fff transparent transparent;
+                /*透明 灰 透明 透明 */
+                margin: 40px auto;
+                left: -18px;
+                top: 50%;
+                margin-top: -10px;
+            }
+            &:after {
+                @include transform(rotate(180deg));
+                left: auto;
+                right: -18px;
+            }
         }
-
         overflow: hidden;
-        canvas{
+        canvas {
             @include pos(a);
             left: 0;
             top: 0;
             background: #bbbbbb;
         }
-        &>.zmiti-img{
-           &:nth-of-type(1){
-               @include pos(f);
-               z-index: -1;
-               left: 100%;
-           }
-           &:nth-of-type(2) {
-               opacity: 0;
-           }
-           ;
+        &>.zmiti-img {
+            &:nth-of-type(1) {
+                @include pos(f);
+                z-index: -1;
+                left: 100%;
+            }
+            &:nth-of-type(2) {
+                opacity: 0;
+            }
         }
     }
-    img{
-        width:100%;
+    img {
+        width: 100%;
         height: auto;
     }
 
-    .zmiti-like{
+    .zmiti-img-like-num{
+        color:#666;
+    }
+    .zmiti-like {
         @include pos(r);
         text-align: right;
-        display: none;
         width: 90%;
         margin: 0 auto;
-        img{
+        img {
             width: 40px;
-            height: 40px;;
+            height: 40px;
         }
-
-        .zmiti-face{
+        &>img {
+            @include pos(r);
+            z-index: 100;
+        }
+        .zmiti-face {
             @include pos(a);
             right: 0;
             top: 0;
-            opacity:0;
+            opacity: 0;
         }
+    }
+}
+
+.zmiti-msg-input {
+    @include displayBox(horizontal);
+    height: 70px;
+    line-height: 70px;
+    width: 90%;
+    margin: 0 auto;
+    @include pos(r);
+    .zmiti-input-enable {
+        -webkit-box-flex: 1;
+        height: 100%;
+        @include pos(r);
+        img {
+            width: 20px;
+            margin: 0 20px;
+            margin-top: 14px;
+        }
+        &:before {
+            content: '';
+            z-index: -1;
+            @include pos(a);
+            width: 90%;
+            height: 80%;
+            background: #ddd;
+            @include br(30px);
+            left: 0;
+            top: 10%;
+        }
+    }
+    .zmiti-discuss {
+        img {
+            width: 40px;
+        }
+    }
+    .zmiti-discuss,
+    .zmiti-share {
+        width: 80px;
+        text-align: center;
+    }
+    .zmiti-share {
+        width: 80px;
+        img {
+            width: 40px;
+        }
+    }
+}
+
+.zmiti-submit-input {
+    width: 90%;
+    margin: 0 auto;
+    display: none;
+    textarea{
+        width: 100%;
+        height: 100px;
+        border:1px solid #ccc;
+        @include br(10px);
+    }
+    .zmiti-submit-btn{
+        width: 120px;
+        height: 60px;
+        text-align: center;
+        line-height:60px;
+        background:#f90;
+        color:#fff;
+        @include br(10px);
+        float: right;
+        margin:30px 0 50px;
+    }
+}
+
+.zmiti-mask{
+    @include pos(f);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(0,0,0,.6);
+    z-index: 1000;
+    display: none;
+    text-align: right;
+    img{
+        margin: 10px 10px 0 0;
     }
 }
