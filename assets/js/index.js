@@ -74,15 +74,43 @@
                     $("#zmiti-share").ontouchend = function(){
                         mask.style.display = 'block'
                     };
-                    
-                    this.$("#zmiti-input-enable").ontouchend = function(){
-                        $(".zmiti-msg-input").style.display = 'none';
-                        $("#zmiti-submit-input").style.display = 'block';
+
+                    $("#zmiti-submit-input").ontouchstart = function(e){
+                        //
+                        if(e.target.nodeName === 'TEXTAREA'){
+                            return
+                        }
+                        e.preventDefault();
                     };
+                    $("#zmiti-back-btn").ontouchend = function(){
+                        $("#zmiti-submit-input").classList.remove("active");
+                    };
+                    this.$("#zmiti-input-enable").ontouchend = function(){
+                        //$(".zmiti-msg-input").classList.add('active');
+                        $("#zmiti-submit-input").classList.add("active");
+                        
+                        setTimeout(function(){
+                            $("#submit-msg").focus(); 
+                        },10)
+                       
+                    };
+                   
                     var d = new Date();
                     var s = this;
                     $("#zmiti-submit-btn").ontouchend = function(){
                         var val = $("#submit-msg").value;
+                        var img = $("#zmiti-result>img");
+                        img.classList.remove("error");
+                        if(!val){
+                            img.src = './assets/images/error1.png';
+                            img.classList.add('error');
+                            $('#zmiti-result>div').innerHTML = '留言内容不能为空';
+                            $('#zmiti-result').classList.add('active');
+                            setTimeout(() => {
+                                $('#zmiti-result').classList.remove('active');
+                            }, 2000);
+                            return;
+                        }
                          axios.post(s.host + '/xhs-security-activity/activity/comment/saveComment', {
                              "secretKey": s.secretKey, // 请求秘钥
                              comment:val,
@@ -94,8 +122,28 @@
                                  dt = JSON.parse(dt);
                              }
                              if(dt.rc === 0){
+                                $('#zmiti-result>img').src = './assets/images/right1.png';
+                                $('#zmiti-result>div').innerHTML = '提交成功';
+                                setTimeout(function(){
+                                    $("#zmiti-result").classList.add("active");
+                                }, 100);
                                 
+
                              }
+                             else{
+                                 $('#zmiti-result>img').src = './assets/images/error1.png';
+                                 $('#zmiti-result>div').innerHTML = '提交失败';
+                                 setTimeout(function() {
+                                     $("#zmiti-result").classList.add("active");
+                                 }, 100);
+                             }
+
+                             setTimeout(() => {
+                                 $("#zmiti-submit-input").classList.remove("active");
+                                $(".zmiti-msg-input").classList.remove('active');
+                                $('#zmiti-result').classList.remove('active');
+                                $("#submit-msg").value = "";
+                             }, 2000);
                          });
                     };
                 },
@@ -316,6 +364,39 @@
                     var s = this;
                     var $$ = s.$$;
                     this.$('.zmiti-main-ui').innerHTML = html;
+
+                    var otherhtml = "\
+                     <div class='zmiti-msg-input'>\
+                        <div>\
+                            <div class='zmiti-input-enable' id='zmiti-input-enable'>\
+                                <img src='./assets/images/edit.png'/>  写留言...\
+                            </div>\
+                            <div class='zmiti-discuss'>\
+                                <img src='./assets/images/msg.png'/>\
+                            </div>\
+                            <div class='zmiti-share' id='zmiti-share'>\
+                                <img src='./assets/images/share.png'/>\
+                            </div>\
+                        </div>\
+                    </div>\
+                    <div class='zmiti-submit-input' id='zmiti-submit-input'>\
+                        <div style='line-height:90px;height:60px;;text-align:left;margin-left:5%'>请输入您的留言</div>\
+                    <textarea id='submit-msg'></textarea>\
+                        <div class='zmiti-submit-btn' id='zmiti-submit-btn'>\
+                            提交\
+                        </div>\
+                        <div class='zmiti-submit-btn' id='zmiti-back-btn' style='margin:30px 1% 50px'>\
+                            返回\
+                        </div>\
+                    </div>\
+                    <div class='zmiti-mask' id='zmiti-mask'>\
+                        <img src='./assets/images/arrow.png' />\
+                    </div>\
+                    <div class='zmiti-result ' id='zmiti-result'>\
+                        <img src='./assets/images/error1.png' />\
+                        <div></div>\
+                    </div>";
+                    document.body.innerHTML+= otherhtml;
                     var likes = this.$$('.zmiti-like');
                     likes.forEach(function(like,k){
                         var faces = like.querySelectorAll('.zmiti-face');
@@ -325,7 +406,8 @@
                                 obj:face
                             }));
                         });
-                        var  t = null;
+                        t = null;
+                       
                         like.index = k;
                         like.addEventListener('touchend',function(){
                             if(t === null){
@@ -334,31 +416,37 @@
                                         face.animate();
                                     })
                                 }, 30);
-
-                                axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
-                                    "secretKey": s.secretKey, // 请求秘钥
-                                    "nm": "xhs-image40-like-" + (this.index+1) // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
-                                }).then(function (data) {
-                                    var dt = data.data;
-                                    if(typeof dt === 'string'){
-                                        dt = JSON.parse(dt);
-                                    }
-                                    if(dt.rc === 0 ){
-                                        var numObj = $$(".zmiti-swpier-item")[like.index].querySelector('.zmiti-img-like-num');
-                                          numObj.innerHTML = numObj.innerHTML*1+1;
-                                    }
-                                });
-                                setTimeout(() => {
-                                    clearInterval(t);
-                                    t = null;
-                                    facesAry.forEach(function (face) {
-                                       face.init();
-                                    })
-                                }, 1000);
+                                
+                                s.like(this.index,like);
+                               
                             }
-    
+                            setTimeout(function() {
+                                clearInterval(t);
+                                t = null;
+                                facesAry.forEach(function(face) {
+                                    face.init();
+                                });
+                            }, 1000);
                         });
                     })
+                },
+                like: function(index) {
+                    var s = this;
+                    var $$ = this.$$;
+                    axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
+                        "secretKey": s.secretKey, // 请求秘钥
+                        "nm": "xhs-image40-like-" + (index + 1) // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+                    }).then(function(data) {
+                        var dt = data.data;
+                        if (typeof dt === 'string') {
+                            dt = JSON.parse(dt);
+                        }
+                        if (dt.rc === 0) {
+                            var numObj = $$(".zmiti-swpier-item")[index].querySelector('.zmiti-img-like-num');
+                            numObj.innerHTML = numObj.innerHTML * 1 + 1;
+                        }
+                    });
+                    
                 },
                 getPV:function(id){
                     var s = this;
@@ -372,30 +460,38 @@
                             dt = JSON.parse(dt);
                         }
                         $$(".zmiti-swpier-item")[id - 1].querySelector('.zmiti-img-like-num').innerHTML = dt.data.num;
-                        
                     });
                 },
                 init:function(){
-                    this.bindEvent();
-                    var imgList = [];
+                    
+                    var imgList = [
+                        './assets/images/right1.png',
+                        './assets/images/error1.png',
+                        './assets/images/edit.png',
+                    ];
                     var s = this;
                     this.imgList.forEach(function(img,i){
                         imgList = imgList.concat(img.imgs);
-                        s.getPV(i+1);
                     });
 
                     var pro = s.$('#progress');
                     this.loading(imgList,function(e){
                        pro.innerHTML = (e*100|0)+"%";
                     },function(){
+
                        s.$('#loading').style.display = 'none';
                        s.layout();
                        s.setSize();
+                        s.bindEvent();
+                       
+                       s.imgList.forEach(function(img, i) {
+                           s.getPV(i + 1);
+                       });
                        
                     })
                 },
                 initCanvas:function(){
-                  
+                    var self = this;
                     this.canvases.forEach(function(item,i){
                    ///var {canvas,imgs,box,offsetLeft} = item;
                     var canvas = item.canvas,
@@ -422,6 +518,17 @@
                                 heart.addEventListener('animationend',function(){
                                     box.removeChild(this);
                                 });
+
+                                var node = e.target.parentNode.parentNode;
+                                var index = -1;
+                                self.$$(".zmiti-main-ui>.zmiti-swpier-item").forEach(function(item,i){
+                                    if(item === node){
+                                        index = i;
+                                    }
+                                });
+
+                               
+                                self.like(index);
                                 
                                 box.appendChild(heart);
                                 heart.style.left = (e.changedTouches[0].pageX / 750)*100 + '%';
@@ -470,11 +577,7 @@
  
                                 }
                             }
-                            canvas.ontouchstart = function(e){
-                                
-                                start(e);
-                                //return false;
-                            }
+                            
                             box.ontouchstart = function(e){
                                 start(e);
                                // return false;

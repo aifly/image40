@@ -1,11 +1,11 @@
 @mixin pos($v) {
-    @if $v==a {
+    @if $v == a {
         position: absolute;
     }
-    @else if $v==r {
+    @else if $v == r {
         position: relative;
     }
-    @else if $v==f {
+    @else if $v == f {
         position: fixed;
     }
 }
@@ -105,7 +105,9 @@
 .lt-full {
     width: 100%;
     height: 100%;
+
     @include pos(a);
+
     left: 0;
     top: 0;
 }
@@ -121,11 +123,14 @@
 .zmiti-play {
     width: .8rem;
     height: .8rem;
+
     @include br;
     @include pos(f);
+
     z-index: 1000;
     right: .5rem;
     top: .5rem;
+
     &.rotate {
         @include animation(rotate 5s linear infinite);
     }
@@ -138,6 +143,7 @@ body {
 
 #loading {
     @include pos(a);
+
     background: #158ae4;
     background: #000;
     width: 100%;
@@ -146,47 +152,63 @@ body {
     left: 0;
     top: 0;
     color: #fff;
-    @include displayBox(vertical);
-    &>div {
-        line-height: 70px;
-        width: 60%;
+
+
+    & > div {
+        line-height: 60px;
+        width: 94%;
         text-align: center;
-        font-size: 40px;
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 auto;
+        color:#fff891
     }
+
     .zmiti-clock {
-        margin-top: 40px;
-        width: 91px;
+        width: 132px;
         @include pos(r);
-        height: 123px;
-        background: url(../images/clock.png) no-repeat center;
+        margin: 8vh auto  4vh;
+
+
+
+        height: 183px;
+        background: url(../images/clock-1.png) no-repeat center;
+
         .zmiti-c1 {
-            background: url(../images/c1.png) no-repeat center;
-            width: 27px;
-            height: 19px;
+            width: 8px;
+            height: 30px;
             @include pos(a);
-            bottom: 45px;
-            left: 18px;
-            @include animation(rotate1 linear 2s infinite);
-            @include transformOrigin(right bottom);
+            background:#3486e5;
+            bottom: 66px;
+            left: 64px;
+
+
+            @include transformOrigin(center bottom);
+           @include animation(rotate1 linear 2s infinite);
         }
+
         .zmiti-c2 {
-            background: url(../images/c2.png) no-repeat center;
-            width: 29px;
-            height: 20px;
+            width: 36px;
+            height: 4px;
             @include pos(a);
-            bottom: 45px;
-            left: 45px;
+            background:#3486e5;
+            bottom: 65px;
+            left: 69px;
             @include transformOrigin(left bottom);
             @include animation(rotate1 linear 1s infinite);
         }
+
         .zmiti-c0 {
-            background: url(../images/c0.png) no-repeat center;
-            width: 18px;
-            height: 18px;
+            background: url(../images/c0-1.png) no-repeat center;
+            width: 23px;
+            height: 23px;
+
             @include pos(a);
+
             left: 50%;
             margin-left: -9px;
-            bottom: 38px;
+            bottom: 55px;
+
             @include animation(rotate1 linear 1s infinite);
         }
     }
@@ -194,23 +216,29 @@ body {
 
 @-webkit-keyframes rotate1 {
     to {
-        @include transform(rotate(360deg));
+      @include transform(rotate(360deg));
     }
 }
 
 #bar {
     height: 30px;
     margin-bottom: 30px;
+
     @include pos(r);
+
     overflow: hidden;
+
     span {
         width: 100%;
+
         @include pos(a);
+
         width: 100%;
         height: 100%;
         background: #f90;
         left: 0;
         top: 0;
+
         @include transform(translate3d(-100%, 0, 0));
     }
 }
@@ -219,119 +247,153 @@ body {
     width: 100%;
     margin: 20px auto;
     color: #333;
+    padding-bottom: 120px;
+
     .zmiti-title {
         width: 90%;
         text-indent: 2em;
         margin: 20px auto;
     }
+
     .zmiti-swpier-item {
         .zmiti-header {
             margin: 20px auto;
             width: 90%;
         }
+
         .zmiti-swiper-bottom {
             font-size: 22px;
             margin: 20px auto 20px;
             width: 90%;
             color: #666;
         }
+
         padding-bottom: 40px;
     }
+
     .zmiti-img-box {
         @include pos(r);
 
-        .zmiti-heart{
+        .zmiti-heart {
             @include pos(a);
+
             width: 100px;
             z-index: 100;
-            
             margin-left: -50px;
-            
             margin-top: -50px;
-            @include animation(scale .8s );
-            
+
+            @include animation(scale 0.8s);
         }
 
-        @-webkit-keyframes scale{
-            to{
-                @include transform(scale(4) translate3d(-4px,-4px,0));
-                opacity:0;
+        @-webkit-keyframes scale {
+            to {
+                @include transform(scale(4) translate3d(-4px, -4px, 0));
+
+                opacity: 0;
             }
         }
-        &>h3 {
+
+        & > h3 {
             font-size: 36px;
+
             @include pos(r);
+
             z-index: 100;
         }
+
         .zmiti-swipe-bar {
             @include pos(a);
+
             width: 8px;
             height: 100%;
             left: 50%;
             margin-left: -4px;
             top: 0;
             background: #fff;
+
             &:before,
             &:after {
                 content: "";
+
                 @include pos(a);
-                width: 0;
+
+                width: 27px;
+                height: 46px;
+                background:url(../images/swipe.png) no-repeat center center;
+
+               /*  width: 0;
                 height: 0;
                 border-width: 18px 18px 18px 0;
                 border-style: solid;
                 border-color: transparent #fff transparent transparent;
-                margin: 40px auto;
-                left: -18px;
+                margin: 40px auto; */
+                left: -25px;
                 top: 50%;
                 margin-top: -10px;
             }
+
             &:after {
                 @include transform(rotate(180deg));
+
                 left: auto;
-                right: -18px;
+                right: -25px;
             }
         }
+
         overflow: hidden;
+
         canvas {
             @include pos(a);
+
             left: 0;
             top: 0;
             background: #bbbbbb;
         }
-        &>.zmiti-img {
+
+        & > .zmiti-img {
             &:nth-of-type(1) {
                 @include pos(f);
+
                 z-index: -1;
                 left: 100%;
             }
+
             &:nth-of-type(2) {
                 opacity: 0;
             }
         }
     }
+
     img {
         width: 100%;
         height: auto;
     }
 
-    .zmiti-img-like-num{
-        color:#666;
+    .zmiti-img-like-num {
+        color: #666;
     }
+
     .zmiti-like {
         @include pos(r);
+
         text-align: right;
         width: 90%;
         margin: 0 auto;
+
         img {
             width: 40px;
             height: 40px;
         }
-        &>img {
+
+        & > img {
             @include pos(r);
+
             z-index: 100;
         }
+
         .zmiti-face {
             @include pos(a);
+
             right: 0;
             top: 0;
             opacity: 0;
@@ -340,45 +402,94 @@ body {
 }
 
 .zmiti-msg-input {
-    @include displayBox(horizontal);
-    height: 70px;
-    line-height: 70px;
-    width: 90%;
-    margin: 0 auto;
-    @include pos(r);
+    padding-bottom: 30px;
+    height: 100px;
+    line-height: 100px;
+    z-index: 1020;
+
+    & > div {
+        @include displayBox(horizontal);
+
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    background: #fff;
+    width: 100%;
+
+    @include pos(f);
+
+    &:before {
+        content: '';
+
+        @include pos(a);
+
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    }
+
+    bottom: 0;
+    left: 0;
+
+    &.active {
+        opacity: 0;
+
+        @include pos(a);
+
+        z-index: -1;
+    }
+
     .zmiti-input-enable {
         -webkit-box-flex: 1;
         height: 100%;
+
         @include pos(r);
+
         img {
             width: 20px;
             margin: 0 20px;
             margin-top: 14px;
         }
+
         &:before {
             content: '';
             z-index: -1;
+
             @include pos(a);
+
             width: 90%;
-            height: 80%;
-            background: #ddd;
+            height: 70%;
+            background: #f6f6f6;
+
             @include br(30px);
+
             left: 0;
             top: 10%;
         }
     }
+
     .zmiti-discuss {
         img {
             width: 40px;
         }
     }
+
     .zmiti-discuss,
     .zmiti-share {
         width: 80px;
         text-align: center;
+
+        @include pos(r);
+
+        z-index: 1000;
     }
+
     .zmiti-share {
         width: 80px;
+
         img {
             width: 40px;
         }
@@ -386,39 +497,110 @@ body {
 }
 
 .zmiti-submit-input {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    display: none;
-    textarea{
-        width: 100%;
-        height: 100px;
-        border:1px solid #ccc;
-        @include br(10px);
+    opacity: 0;
+    height: 100vh;
+    z-index: -1;
+
+    @include transform(translate3d(0, 50vh, 0));
+    @include transition(0.2s);
+    @include pos(f);
+
+    background: #fff;
+    top: 0;
+    left: 0;
+
+    &.active {
+        opacity: 1;
+        z-index: 1002;
+
+        @include transform(translate3d(0, 0, 0));
     }
-    .zmiti-submit-btn{
+
+    text-align: center;
+
+    textarea {
+        width: 90%;
+        height: 140px;
+        margin-top: 20px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+
+        @include br(10px);
+
+        font-size: 30px;
+    }
+
+    .zmiti-submit-btn {
         width: 120px;
         height: 60px;
         text-align: center;
-        line-height:60px;
-        background:#f90;
-        color:#fff;
+        line-height: 60px;
+        background: #f90;
+        color: #fff;
+
         @include br(10px);
+
         float: right;
-        margin:30px 0 50px;
+        margin: 30px 5% 50px;
+    }
+
+    #zmiti-back-btn {
+        background: #ccc;
     }
 }
 
-.zmiti-mask{
+.zmiti-mask {
     @include pos(f);
+
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background:rgba(0,0,0,.6);
-    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1800;
     display: none;
     text-align: right;
-    img{
+
+    img {
         margin: 10px 10px 0 0;
+    }
+}
+
+.zmiti-result {
+    @include pos(f);
+
+    left: 50%;
+    opacity: 0;
+    z-index: -1;
+    top: 50%;
+
+    &.active {
+        z-index: 8000;
+        opacity: 1;
+    }
+
+    padding: 20px 40px;
+
+    @include transform(translate3d(-50%, -50%, 0));
+
+    @include displayBox(vertical);
+
+    background: rgba(0, 0, 0, 0.7);
+
+    @include br(10px);
+
+    color: #fff;
+
+    img {
+        width: 100px;
+        margin: 30px 0;
+
+        &.error {
+            height: 100px;
+            width: auto;
+        }
     }
 }
