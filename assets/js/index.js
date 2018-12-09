@@ -82,6 +82,11 @@
                         }
                         e.preventDefault();
                     };
+                    var u = navigator.userAgent;
+                    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; 
+                    /*this.$$(".zmiti-swiper-bottom").forEach(function(item){
+                        item.style.fontSize = isAndroid ? '14px':'22px';
+                    });*/
                     $("#zmiti-back-btn").ontouchend = function(){
                         $("#zmiti-submit-input").classList.remove("active");
                     };
@@ -170,8 +175,8 @@
                     {
                         title:'打拳的还是我',
                         imgs:[
-                            './assets/images/5-3.jpg',
                             './assets/images/6-3.jpg',
+                            './assets/images/5-3.jpg',
                         ],
                         desc:'2002年，河南兰考，6岁的李傲星在老式青砖房前打拳。2018年，李傲星在150平方米的大房子前打拳。 '
                     },
@@ -208,15 +213,15 @@
                     },{
                         title:'小美女长大了',
                         imgs:[
-                            './assets/images/15-3.jpg',
                             './assets/images/16-3.jpg',
+                            './assets/images/15-3.jpg',
                         ],
                         desc:'1994年，安徽合肥，6岁的周爱际在水泥预制板拼接成的“大板楼”家里。2018年，周爱际在160平方米大房子里。'
                     },{
                         title:'小丫的家',
                         imgs:[
-                            './assets/images/18-3.jpg',
                             './assets/images/17-3.jpg',
+                            './assets/images/18-3.jpg',
                         ],
                         desc:'1991年，河南开封，6岁的柏扬在家中，家中彩电24英寸。2018年，柏扬和儿子在北京家中，家中彩电60多英寸。'
                     },{
@@ -245,8 +250,8 @@
                     },{
                         title:'“步步高”',
                         imgs:[
-                            './assets/images/26-3.jpg',
                             './assets/images/25-3.jpg',
+                            './assets/images/26-3.jpg',
                         ],
                         desc:'1985年，云南寻甸，27岁的王汉明和妻子在家中举行婚礼。2018年，王汉明和妻子在200多平方米的家中客厅留影。'
                     },{
@@ -322,8 +327,8 @@
                     },{
                         title:'金婚50载',
                         imgs:[
-                            './assets/images/48-3.jpg',
                             './assets/images/47-3.jpg',
+                            './assets/images/48-3.jpg',
                         ],
                         desc:'1992年，湖南长沙，50岁的钱正华和44岁的杨家梅在单位宿舍房。 2018年，迎来金婚纪念的钱正华和杨家梅在200平方米的家中。'
                     },{
@@ -392,8 +397,8 @@
                     },{
                         title:'旧砖房变独栋',
                         imgs:[
-                            './assets/images/68-3.jpg',
                             './assets/images/67-3.jpg',
+                            './assets/images/68-3.jpg',
                         ],
                         desc:'1978年，云南寻甸，24岁的杨彩珍（右）在居住的砖房前织毛衣。2018年，云南曲靖，杨彩珍在自家200多平方米的独栋住宅前。'
                     },{
@@ -450,19 +455,19 @@
                     for(var i=1;i<=15;i++){
                         faceImgs +="<div class='zmiti-face'><img draggable='false' src='./assets/images/"+i+".gif'/></div>"
                     }
-                    var html = '<div class="zmiti-title">轻轻地滑动手指，你将看到这40个中国普通百姓家庭的新旧影像。它们如吉光片羽，沉淀了岁月的痕迹，承载了穿越时空的亲情；它们浓缩了沧海巨变，折射了改革开放创造的中国奇迹。</div>'
+                    var html = '<div class="zmiti-title">左右滑动图片，你将看到这40个中国普通百姓家庭的新旧影像。它们如吉光片羽，沉淀了岁月的痕迹，承载了穿越时空的亲情；它们浓缩了沧海巨变，折射了改革开放创造的中国奇迹。</div>'
                     this.imgList.forEach(function(img,i){
                         if(img.title){
-                            html+="<div class='zmiti-swpier-item'>\
+                            html+="<div class='zmiti-team zmiti-swpier-item'>\
                                         <h3 class='zmiti-header'>"+(i+1)+"、"+img.title+"</h3>\
                                         <div class='zmiti-img-box'>\
                                             <img draggable='false' src='"+img.imgs[0]+"' class='zmiti-img' />\
                                             <img draggable='false' src='"+img.imgs[1]+"' class='zmiti-img' />\
-                                            <canvas></canvas>\
+                                            <canvas width='750'></canvas>\
                                             <div class='zmiti-swipe-bar'></div>\
                                         </div>\
                                         <div class='zmiti-swiper-bottom'>\
-                                            "+img.desc+"\
+                                            <span>"+img.desc+"</span>\
                                         </div>\
                                         <div class='zmiti-like'>\
                                             <img draggable='false' src='./assets/images/like1.png'/>\
@@ -473,6 +478,62 @@
                         }
                     })
 
+                    /*
+                        总监制：刘思扬
+                        监  制：孙承斌
+                        策  划：刘洁 陈凯星 郑卫 马书平
+                        统  筹：王建华 齐慧杰
+                        图片编辑：薛东梅 林繁晶 孟晨光
+                        新媒体编辑：宋君毅 唐颢宸 孟洁
+                        侯帮兴 刘雅萱 卓越 
+                        设计制作：麟腾传媒
+                        技术支持：新华社新媒体中心智能化编辑部
+                         
+                        新华社摄影部 新华社新媒体中心
+                        联合出品
+                    */
+
+                    html+='<div class="zmiti-team">\
+                            <div>\
+                                <div>总监制：</div>\
+                                <div><span>刘思扬</span></div>\
+                            </div>\
+                            <div>\
+                                <div>监<label style="opacity:0">监</label>制：</div>\
+                                <div><span>孙承斌</span></div>\
+                            </div>\
+                            <div>\
+                                <div>策<label style="opacity:0">监</label>划：</div>\
+                                <div><span>刘洁</span><span>陈凯星</span><span>郑卫</span><span>马书平</span></div>\
+                            </div>\
+                            <div>\
+                                <div>统<label style="opacity:0">监</label>筹：</div>\
+                                <div><span>王建华</span><span>齐慧杰</span></div>\
+                            </div>\
+                            <div>\
+                                <div>图片编辑：</div>\
+                                <div><span>薛东梅</span><span>林繁晶</span><span>孟晨光</span></div>\
+                            </div>\
+                            <div>\
+                                <div>新媒体编辑：</div>\
+                                <div><span>宋君毅</span><span>唐颢宸</span><span>孟洁</span><span>侯帮兴</span><span>刘雅萱</span><span>卓越</span></div>\
+                            </div>\
+                            <div>\
+                                <div>视觉设计：</div>\
+                                <div><span>王益亮</span></div>\
+                            </div>\
+                            <div>\
+                                <div>设计制作：</div>\
+                                <div><span>麟腾传媒</span></div>\
+                            </div>\
+                            <div>\
+                                <div>技术支持：</div>\
+                                <div><span>新华社新媒体中心智能化编辑部</span></div>\
+                            </div>\
+                            <div class="zmiti-spilt">\
+                                <div><span>新华社摄影部</span><span>新华社新媒体中心</span><span>联合出品</span></div>\
+                            </div>\
+                    </div>'
                    
                     var s = this;
                     var $$ = s.$$;
@@ -592,10 +653,13 @@
                        pro.innerHTML = (e*100|0)+"%";
                     },function(){
 
-                       s.$('#loading').style.display = 'none';
+                       setTimeout(function(){
+                            s.$('#loading').style.display = 'none';
+                       },110)
+
                        s.layout();
                        s.setSize();
-                        s.bindEvent();
+                       s.bindEvent();
                        
                        s.imgList.forEach(function(img, i) {
                            s.getPV(i + 1);

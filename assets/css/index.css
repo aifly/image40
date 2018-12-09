@@ -129,15 +129,18 @@ body {
     text-indent: 2em;
     margin: 20px auto; }
   .zmiti-main-ui .zmiti-swpier-item {
+    width: 100%;
     padding-bottom: 40px; }
     .zmiti-main-ui .zmiti-swpier-item .zmiti-header {
       margin: 20px auto;
       width: 90%; }
     .zmiti-main-ui .zmiti-swpier-item .zmiti-swiper-bottom {
-      font-size: 22px;
       margin: 20px auto 20px;
       width: 90%;
+      position: relative;
       color: #666; }
+    .zmiti-main-ui .zmiti-swpier-item .zmiti-like {
+      display: block; }
   .zmiti-main-ui .zmiti-img-box {
     position: relative;
     overflow: hidden; }
@@ -359,5 +362,29 @@ body {
     .zmiti-result img.error {
       height: 100px;
       width: auto; }
+
+.zmiti-team {
+  width: 90%;
+  color: #666;
+  border-top: 1px solid #eee;
+  min-height: 100px;
+  margin: 0 auto; }
+  .zmiti-team > div {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    -webkit-box-orient: horizontal;
+    margin: 15px 0;
+    -webkit-box-pack: start;
+    -webkit-box-align: start; }
+    .zmiti-team > div > div:nth-of-type(1) {
+      width: 180px; }
+    .zmiti-team > div > div:nth-of-type(2) {
+      -webkit-box-flex: 1;
+      word-break: break-all; }
+    .zmiti-team > div.zmiti-spilt > div:nth-of-type(1) {
+      width: 100%; }
+    .zmiti-team > div span {
+      margin-right: 16px; }
 
 /*# sourceMappingURL=index.css.map */
