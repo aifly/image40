@@ -428,7 +428,7 @@
                             './assets/images/76-3.jpg',
                             './assets/images/75-3.jpg',
                         ],
-                        desc: '1981年，广西桂平，百天的刘瑜和父母合影（刘瑜提供）。<br/>2018 年， 上海， 留法归来的刘瑜和丈夫尼古拉在自己经营的餐厅里忙碌（新华社记者方喆摄）'
+                        desc: '1981年，广西桂平，百天的刘瑜和父母合影（刘瑜提供）。<br/>2018 年， 上海， 留法归来的刘瑜和丈夫尼古拉在自己经营的餐厅里忙碌（新华社记者方喆摄）。'
                     },{
                         title:'吾家有女初长成',
                         imgs:[
@@ -504,11 +504,11 @@
                             </div>\
                             <div>\
                                 <div>策<label style="opacity:0">监</label>划：</div>\
-                                <div><span>刘洁</span><span>陈凯星</span><span>郑卫</span><span>马书平</span></div>\
+                                <div><span>刘洁</span><span>陈凯星</span><span>郑卫</span><span>马书平</span><span>兰红光</span></div>\
                             </div>\
                             <div>\
                                 <div>统<label style="opacity:0">监</label>筹：</div>\
-                                <div><span>王建华</span><span>齐慧杰</span></div>\
+                                <div><span>赖向东</span><span>王建华</span><span>齐慧杰</span></div>\
                             </div>\
                             <div>\
                                 <div>图片编辑：</div>\
