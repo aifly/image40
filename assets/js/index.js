@@ -664,6 +664,32 @@
                        s.imgList.forEach(function(img, i) {
                            s.getPV(i + 1);
                        });
+
+                       var $$ = this.$$;
+                       axios.post(s.host + '/xhs-security-activity/activity/num/updateNum', {
+                           "secretKey": s.secretKey, // 请求秘钥
+                           "nm": "xhs-image40-pv" // 活动某组图片点赞标识 或者活动某组图片浏览量标识 标识由更新接口定义
+                       }).then(function (data) {
+                           var dt = data.data;
+                           if (typeof dt === 'string') {
+                               dt = JSON.parse(dt);
+                           }
+
+                       });
+
+
+                        /* axios.post(s.host + '/xhs-security-activity/activity/num/getNum', {
+                            "secretKey": s.secretKey, // 请求秘钥
+                            "nm": "xhs-image40-pv"
+                        }).then(function (data) {
+                            var dt = data.data;
+                            if (typeof dt === 'string') {
+                                dt = JSON.parse(dt);
+                            }
+
+                            console.log(dt);
+                        });
+ */
                        
                     })
                 },
